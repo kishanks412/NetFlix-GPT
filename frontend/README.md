@@ -19,6 +19,8 @@
 - bugfix- if user login redirect to browse page
 - unsubscribe to onauthstatechanged callback
 - added hardcoded values to constants
+- registered tmdb api, create app and access token
+- get data from tmdb now playing movie list
 
 # Features
  - login/ signup page
