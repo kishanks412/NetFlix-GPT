@@ -17,7 +17,8 @@
 - bugfix- sign up user displayed and profile update
 - bugfix- if user is not logged in redirect to login page
 - bugfix- if user login redirect to browse page
-
+- unsubscribe to onauthstatechanged callback
+- added hardcoded values to constants
 
 # Features
  - login/ signup page
