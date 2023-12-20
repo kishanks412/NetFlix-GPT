@@ -21,6 +21,14 @@
 - added hardcoded values to constants
 - registered tmdb api, create app and access token
 - get data from tmdb now playing movie list
+- custom hook for nowplaying movie
+- create movie slice
+- updated store movie data
+- planing for main and secondary container
+- fetch data for trialer video
+- updated the store with trailere video data
+- embeded the youtube video and made auto play
+- added tailwind css to make it good
 
 # Features
  - login/ signup page
