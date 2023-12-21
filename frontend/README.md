@@ -29,6 +29,12 @@
 - updated the store with trailere video data
 - embeded the youtube video and made auto play
 - added tailwind css to make it good
+- build secondary componenet
+- build movie cart
+- build movie list
+- found tmdb img cdn url
+- made brose page amazing 
+- usePopular movie custom hook
 
 # Features
  - login/ signup page
