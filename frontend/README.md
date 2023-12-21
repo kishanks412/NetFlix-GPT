@@ -35,6 +35,11 @@
 - found tmdb img cdn url
 - made brose page amazing 
 - usePopular movie custom hook
+- gpt search page
+- gpt search bar
+- multilanguage app
+- integreate gpt api
+- 
 
 # Features
  - login/ signup page
