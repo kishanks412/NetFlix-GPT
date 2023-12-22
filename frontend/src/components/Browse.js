@@ -8,6 +8,7 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useTrendingMovies from "../hooks/useTrendingMovies";
+import useTrendingTVShows from "../hooks/useTrendingTVShows";
 
 {
   /*
@@ -38,6 +39,7 @@ const Browse = () => {
   useUpcomingMovies();
   useTopRatedMovies();
   useTrendingMovies();
+  useTrendingTVShows();
 
   return (
     <div>
