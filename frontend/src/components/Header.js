@@ -59,10 +59,10 @@ const Header = () => {
   }
 
   return ( 
-    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex justify-between">
-      <img className="w-44" src={netflix_Logo} alt="netflix-logo" />
+    <div className="absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-full flex flex-col md:flex-row justify-between">
+      <img className="w-44 mx-auto md:mx-0" src={netflix_Logo} alt="netflix-logo" />
       {user && (
-        <div className="flex p-2">
+        <div className="flex p-2 justify-between">
           {showGptSearch && <select className="p-2 m-2 bg-gray-900 text-white rounded-lg" onChange={handleLanguageChange}>
             {SUPPORTED_LANGUAGES.map((lang) => (
               <option key={lang.identifier} value={lang.identifier}>
@@ -76,7 +76,7 @@ const Header = () => {
           >
             {showGptSearch ? "HomePage" : "GPT Search"}
           </button>
-          <img className="w-12 h-12 " src={user.photoURL} alt="user icon" />
+          <img className="w-12 h-12 hidden md:block" src={user.photoURL} alt="user icon" />
           <button onClick={handleSignOut} className="font-bold text-white">
             {" "}
             (Sign Out)
