@@ -39,7 +39,13 @@
 - gpt search bar
 - multilanguage app
 - integreate gpt api
-- 
+- get openai key
+- gpt search api call
+- fetched gpt movies from tmdb
+- created gptslice added data over
+- reused movie list component to make movie suggestoin container
+- adding .env file to git ignore
+- made our site responsive
 
 # Features
  - login/ signup page
