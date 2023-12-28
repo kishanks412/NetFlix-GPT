@@ -65,14 +65,17 @@ const LogIn = () => {
             })
             .catch((error) => {
               // An error occurred
-              setErrorMessage(error.message);
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              setErrorMessage(errorCode + " --1-- " + errorMessage);
             });
           // console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + " - " + errorMessage);
+          // setErrorMessage(errorCode + " --2-- " + errorMessage);
+          setErrorMessage("Given email id is already registered.");
         });
     } else {
       // sign in logic
@@ -89,7 +92,8 @@ const LogIn = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + " - " + errorMessage);
+          // setErrorMessage(errorCode + " --3-- " + errorMessage);
+          setErrorMessage("Enter correct email and password");
         });
     }
   };
@@ -103,8 +107,8 @@ const LogIn = () => {
       <Header />
       <div className="absolute w-full">
         <img
-        className="h-screen object-cover w-full  "
-          src= {signin_Background}
+          className="h-screen object-cover w-full  "
+          src={signin_Background}
           alt="logo"
         />
       </div>
@@ -137,12 +141,15 @@ const LogIn = () => {
         />
         <p className="text-red-500  text-lg py-2">{errorMessage}</p>
         <button
-          className="p-4 my-4 bg-red-600 w-full rounded-lg"
+          className="p-4 my-4 sm:text-xl md:text-2xl md:font-semibold bg-red-600 w-full rounded-lg"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="py-2 cursor-pointer text-sm md:text-base" onClick={toggleSignInForm}>
+        <p
+          className="py-2 cursor-pointer text-sm md:text-base"
+          onClick={toggleSignInForm}
+        >
           {isSignInForm
             ? "New to Netflix? Sign Up Now"
             : "Already Registered? Sign In Now."}

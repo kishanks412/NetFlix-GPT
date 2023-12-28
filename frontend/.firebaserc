@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "netflix-gpt-1488b"
-  }
+    "default": "netflix-gpt-1488b",
+    "build": "netflix-gpt-1488b"
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -1,23 +1,9 @@
-import React from 'react'
-import MoviesList from './MoviesList'
-import { useSelector } from 'react-redux'
+import React from "react";
+import MoviesList from "./MoviesList";
+import { useSelector } from "react-redux";
 
-const SecondaryContainer = () => {
-
-  const movies = useSelector(store => store.movies)
-  const tvShows = useSelector(store => store.tvShows)
-  return (
-    <div className='bg-gray-900'>
-      <div className='mt-0 md-mt-52 pl-4 md:pl-12 relative z-20'>
-
-      <MoviesList title={"Now Playing"} movies={movies.nowPlayingMovies} />
-      <MoviesList title={"Top Rated Movies"} movies={movies.topRatedMovies} />
-      <MoviesList title={"Upcoming"} movies={movies.upcomingMovies} />
-      <MoviesList title={"Popular"} movies={movies.popularMovies} />
-      <MoviesList title={"Trending Movies"} movies={movies.trendingMovies} />
-      <MoviesList title={"Trending TV Shows"} movies={tvShows.trendingTVShows} />
-      </div>
-      {/*
+{
+  /*
         movielist -  popular
           moviecards * n;
         movielist -  now playing
@@ -26,9 +12,71 @@ const SecondaryContainer = () => {
           moviecards * n;
         movielist -  horror
           moviecards * n;
-      */}
-    </div>
-  )
+    */
 }
 
-export default SecondaryContainer
+const SecondaryContainer = () => {
+  const nowPlayingMovies = useSelector((store) => store.movies.nowPlayingMovies);
+  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
+  const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
+  const popularMovies = useSelector((store) => store.movies.popularMovies);
+  const trendingMovies = useSelector((store) => store.movies.trendingMovies);
+  const trendingTVShows = useSelector((store) => store.tvShows.trendingTVShows);
+
+  return (
+    <div className=" w-[100%] bg-gray-900 pb-10">
+      <div className="w-full mt-0 md:-mt-52 pl-4 md:pl-12 relative z-20">
+        {nowPlayingMovies && (
+          <MoviesList
+            title={"Now Playing"}
+            move={"nowPlaying"}
+            rightArrow={true}
+            movies={nowPlayingMovies}
+          />
+        )}
+        {topRatedMovies && (
+          <MoviesList
+            title={"Top Rated Movies"}
+            move={"topRated"}
+            rightArrow={true}
+            movies={topRatedMovies}
+          />
+        )}
+        {upcomingMovies && (
+          <MoviesList
+            title={"Upcoming Movies"}
+            move={"upcoming"}
+            rightArrow={true}
+            movies={upcomingMovies}
+          />
+        )}
+        {popularMovies && (
+          <MoviesList
+            title={"Popular"}
+            move={"popular"}
+            rightArrow={true}
+            movies={popularMovies}
+          />
+        )}
+        {trendingMovies && (
+          <MoviesList
+            title={"Trending Movies"}
+            move={"trendingMovies"}
+            rightArrow={true}
+            movies={trendingMovies}
+          />
+        )}
+        {trendingTVShows && (
+          <MoviesList
+            title={"Trending TV Shows"}
+            move={"trendingTVShows"}
+            rightArrow={true}
+            movies={trendingTVShows}
+          />
+        )}{" "}
+      </div>
+    </div>
+  );
+};
+
+export default SecondaryContainer;
