@@ -1,5 +1,4 @@
-# NetFlix-GPT
-
+# movvify
 - Create-react-app
 - configured tailwindcss
 - Header
