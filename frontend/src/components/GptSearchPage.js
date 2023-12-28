@@ -3,7 +3,7 @@ import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestion from "./GptMovieSuggestion";
 import { signin_Background } from "../utils/constant";
 
-const GptSearch = () => {
+const GptSearchPage = () => {
   return (
     <>
       <div className="fixed -z-10">
@@ -18,4 +18,4 @@ const GptSearch = () => {
   );
 };
 
-export default GptSearch;
+export default GptSearchPage;
