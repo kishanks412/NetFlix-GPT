@@ -31,7 +31,6 @@ const useMovieTrailer = (movieId) => {
 
     const trailer = filteredTrailer.length ? randomTrailer : json.results[0];
 
-    // console.log(trailer);
     dispatch(addTrailerVideo(trailer));
   };
 
