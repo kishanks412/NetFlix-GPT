@@ -3,6 +3,7 @@ import Header from "./Header";
 import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
@@ -15,29 +16,62 @@ import { signin_Background, user_Avatar } from "../utils/constant";
 const LogIn = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
   const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
-  const fullName = useRef(null);
 
   const handleButtonClick = () => {
-    // validation form data
-    // console.log(email.current.value);
-    // console.log(password.current.value);
+    // if blank value
+    if(forgotPassword){
+      if (!email.current.value ) {
+        setErrorMessage("Email is required.");
+        return;
+      }
+    }
+    else{
 
-    const message = checkValidData(email.current.value, password.current.value);
-    // console.log(message);
+      if (!email.current.value || !password.current.value) {
+        setErrorMessage("Email and password are required.");
+        return;
+      }
+    }
+
+    //validating data
+    const message = isSignInForm
+      ? checkValidData(email.current.value)
+      : checkValidData(email.current.value, password.current.value);
+
     setErrorMessage(message);
 
     if (message) {
       return;
     }
 
-    // sign In / sign Up Logic
+    // forgotpassword / sign In / sign Up Logic
+    if (isSignInForm && forgotPassword) {
+      //forgotPassword
 
-    if (!isSignInForm) {
+      sendPasswordResetEmail(auth, email.current.value)
+        .then(() => {
+          // Password reset email sent
+          setErrorMessage("Password reset email sent. Check your inbox.");
+        })
+        .catch((error) => {
+          // An error occurred
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          if (errorCode === "auth/user-not-found") {
+            // Add logic for handling user not found during password reset
+            setErrorMessage("No account found with this email address.");
+          } else {
+            setErrorMessage("Error sending password reset email.");
+          }
+        });
+    } else if (!isSignInForm) {
       // sign up logic
 
       createUserWithEmailAndPassword(
@@ -48,17 +82,15 @@ const LogIn = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: fullName.current.value,
             photoURL: user_Avatar,
           })
             .then(() => {
               // Profile updated!
-              const { uid, email, displayName, photoURL } = auth.currentUser;
+              const { uid, email, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
                   email: email,
-                  displayName: displayName,
                   photoURL: photoURL,
                 })
               );
@@ -98,6 +130,27 @@ const LogIn = () => {
     }
   };
 
+  const handleForgotPassword = () => {
+    // Send password reset email
+    sendPasswordResetEmail(auth, email.current.value)
+      .then(() => {
+        // Password reset email sent
+        setErrorMessage("Password reset email sent. Check your inbox.");
+      })
+      .catch((error) => {
+        // An error occurred
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if (errorCode === "auth/user-not-found") {
+          // Add logic for handling user not found during password reset
+          setErrorMessage("No account found with this email address.");
+        } else {
+          setErrorMessage("Error sending password reset email.");
+        }
+      });
+  };
+
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
@@ -117,43 +170,83 @@ const LogIn = () => {
         className="text-white w-[80%] sm:w-9/12 md:w-6/12 lg:w-4/12 absolute p-12 bg-black my-24 mx-auto right-0 left-0 rounded-lg bg-opacity-80"
       >
         <h1 className="font-bold text-3xl py-4">
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {forgotPassword
+            ? "Forgot Password"
+            : isSignInForm
+            ? "Sign In"
+            : "Sign Up"}
         </h1>
-        {!isSignInForm && (
-          <input
-            ref={fullName}
-            type="text"
-            placeholder="Enter your full name"
-            className="p-4 my-2 w-full rounded-lg bg-gray-700"
-          />
+        {forgotPassword && (
+          <p className="py-2 text-sm md:text-base">
+            Enter your email address, and we'll send you a link to reset your
+            password.
+          </p>
         )}
         <input
           ref={email}
           type="text"
+          required
           placeholder="Email Address"
           className="p-4 my-2 w-full rounded-lg bg-gray-700"
         />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="p-4 my-2 w-full rounded-lg bg-gray-700"
-        />
+        {!forgotPassword && (
+          <input
+            ref={password}
+            type="password"
+            required
+            placeholder="Password"
+            className="p-4 my-2 w-full rounded-lg bg-gray-700"
+          />
+        )}
         <p className="text-red-500  text-lg py-2">{errorMessage}</p>
         <button
           className="p-4 my-4 sm:text-xl md:text-2xl md:font-semibold bg-red-600 w-full rounded-lg"
           onClick={handleButtonClick}
         >
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          {forgotPassword
+            ? "Send Reset Email"
+            : isSignInForm
+            ? "Sign In"
+            : "Sign Up"}
         </button>
-        <p
-          className="py-2 cursor-pointer text-sm md:text-base"
-          onClick={toggleSignInForm}
-        >
-          {isSignInForm
-            ? "New to Netflix? Sign Up Now"
-            : "Already Registered? Sign In Now."}
-        </p>
+
+        {forgotPassword && (
+          <p className="py-2 text-sm md:text-base">
+            <span
+              className="cursor-pointer"
+              onClick={() => setForgotPassword(false)}
+            >
+              Go Back
+            </span>
+          </p>
+        )}
+
+        {!forgotPassword && (
+          <p className="py-2 text-sm md:text-base">
+            {isSignInForm ? (
+              <>
+                New to Movvify?{" "}
+                <span className="cursor-pointer" onClick={toggleSignInForm}>
+                  Sign Up Now
+                </span>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => setForgotPassword(true)}
+                >
+                  {" "}
+                  Forgot Password?
+                </p>
+              </>
+            ) : (
+              <>
+                Already Registered?{" "}
+                <span className="cursor-pointer" onClick={toggleSignInForm}>
+                  Sign In Now
+                </span>
+              </>
+            )}
+          </p>
+        )}
       </form>
     </>
   );
