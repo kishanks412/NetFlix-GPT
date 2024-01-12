@@ -1,6 +1,8 @@
 import React from "react";
 import MoviesList from "./MoviesList";
 import { useSelector } from "react-redux";
+import lang from "../utils/languageConstants";
+
 
 {
   /*
@@ -16,6 +18,8 @@ import { useSelector } from "react-redux";
 }
 
 const SecondaryContainer = () => {
+  const langKey = useSelector((store) => store.config.lang);
+
   const nowPlayingMovies = useSelector((store) => store.movies.nowPlayingMovies);
   const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
   const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
@@ -28,7 +32,7 @@ const SecondaryContainer = () => {
       <div className="w-full mt-0 md:-mt-52 pl-4 md:pl-12 relative z-20">
         {nowPlayingMovies && (
           <MoviesList
-            title={"Now Playing"}
+            title={lang[langKey].playing}
             move={"nowPlaying"}
             rightArrow={true}
             movies={nowPlayingMovies}
@@ -36,7 +40,7 @@ const SecondaryContainer = () => {
         )}
         {topRatedMovies && (
           <MoviesList
-            title={"Top Rated Movies"}
+            title={lang[langKey].rated}
             move={"topRated"}
             rightArrow={true}
             movies={topRatedMovies}
@@ -44,7 +48,7 @@ const SecondaryContainer = () => {
         )}
         {upcomingMovies && (
           <MoviesList
-            title={"Upcoming Movies"}
+            title={lang[langKey].upcoming}
             move={"upcoming"}
             rightArrow={true}
             movies={upcomingMovies}
@@ -52,7 +56,7 @@ const SecondaryContainer = () => {
         )}
         {popularMovies && (
           <MoviesList
-            title={"Popular"}
+            title={lang[langKey].popular}
             move={"popular"}
             rightArrow={true}
             movies={popularMovies}
@@ -60,7 +64,7 @@ const SecondaryContainer = () => {
         )}
         {trendingMovies && (
           <MoviesList
-            title={"Trending Movies"}
+            title={lang[langKey].trendingMovie}
             move={"trendingMovies"}
             rightArrow={true}
             movies={trendingMovies}
@@ -68,7 +72,7 @@ const SecondaryContainer = () => {
         )}
         {trendingTVShows && (
           <MoviesList
-            title={"Trending TV Shows"}
+            title={lang[langKey].trendingTv}
             move={"trendingTVShows"}
             rightArrow={true}
             movies={trendingTVShows}

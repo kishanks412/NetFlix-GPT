@@ -7,12 +7,16 @@ export const user_Avatar =
 export const signin_Background =
   "https://assets.nflxext.com/ffe/siteui/vlv3/d1532433-07b1-4e39-a920-0f08b81a489e/67033404-2df8-42e0-a5a0-4c8288b4da2c/IN-en-20231120-popsignuptwoweeks-perspective_alpha_website_large.jpg";
 
+
+const key = process.env.REACT_APP_TMDB_KEY
+// console.log(key)
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NzFkNTFjMTM4MGJiZjk4ZjVkOTkxZjc0OTI4YWE2ZCIsInN1YiI6IjY1ODEyMTg4ZDUxOTFmMDhhNGFkZWE1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.LE5FqYeiQptOGFD6x5hua7hor4pFnaSGu8QOSpjm3bI",
+      "Bearer " + key,
   },
 };
 

@@ -10,6 +10,8 @@ const usePopularMovies = () => {
     (store) => store.movies.topRatedMovies
   );
 
+    // console.log(process.env.REACT_APP_TMDB_KEY)
+
   const getPopularMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/popular?language=hi-IN&region=IN",

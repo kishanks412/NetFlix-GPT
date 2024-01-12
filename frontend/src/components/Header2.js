@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigate} from "react-router-dom";
 import { auth } from "../utils/firebase";
-import {  onAuthStateChanged, signOut } from "firebase/auth";
-import {  netflix_Logo } from "../utils/constant";
+import {  signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from '../utils/userSlice';
 
 const Header2 = () => {
     const user = useSelector((store) => store.user)
@@ -27,7 +25,7 @@ const Header2 = () => {
         <img
           className="w-44 py-2 "
           src={process.env.PUBLIC_URL + '/images/movvify_logo.png'}
-          alt="netflix-logo"
+          alt="movvify-logo"
         />
         {user && (
           <div className="flex p-2 ">
