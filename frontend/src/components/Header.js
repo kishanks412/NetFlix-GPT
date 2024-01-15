@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { SUPPORTED_LANGUAGES,  } from "../utils/constant";
+import { SUPPORTED_LANGUAGES, user_Avatar,  } from "../utils/constant";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
 
@@ -76,7 +76,7 @@ const Header = () => {
           >
             {showGptSearch ? "HomePage" : "GPT Search"}
           </button>
-          <img className="w-12 h-12 hidden md:block" src={user.photoURL} alt="user icon" />
+          <img className="w-12 h-12 hidden md:block" src={user_Avatar} alt="user icon" />
           <button onClick={handleSignOut} className="font-bold text-white">
             {" "}
             (Sign Out)

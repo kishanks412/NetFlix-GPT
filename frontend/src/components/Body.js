@@ -58,7 +58,7 @@ const Body = () => {
 
   return (
     <>
-    <div>
+    <div className="min-h-screen">
       <RouterProvider router={appRouter} />
     </div>
     
