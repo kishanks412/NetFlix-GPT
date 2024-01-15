@@ -11,8 +11,8 @@ const MoviesList = ({ title, movies, move, rightArrow }) => {
   return (
     <>
       {!movies && <h1>Something Went wrong</h1>}
-      <div className="px-6 ">
-        <div className="py-6 mt-1 flex justify-between">
+      <div className="px-6 pt-10 ">
+        <div className="py-2 mt-1 flex justify-between">
           <h1 className="text-lg md:text-3xl   text-white">{title}</h1>
           {rightArrow && <ChevronRight className="cursor-pointer hover:scale-[130%] " style={{ color: 'white' }} onClick={handleMoviesPage} />}
         </div>

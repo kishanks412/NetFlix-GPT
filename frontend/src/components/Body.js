@@ -11,8 +11,11 @@ import TopRatedMovies from "./TopRatedMovies";
 import PopularMovies from "./PopularMovies";
 import TrendingMovies from "./TrendingMovies";
 import TrendingTVShows from "./TrendingTVShows";
+import { useSelector } from "react-redux";
 
 const Body = () => {
+  const user = useSelector((store) => store.user);
+
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -23,30 +26,30 @@ const Body = () => {
       element: <Browse />,
     },
     {
-      path:"/browse/nowPlaying",
-      element: <NowPlayingMovies />
+      path: "/browse/nowPlaying",
+      element: <NowPlayingMovies />,
     },
     {
-      path:"/browse/topRated",
-      element: <TopRatedMovies />
+      path: "/browse/topRated",
+      element: <TopRatedMovies />,
     },
     {
-      path:"/browse/upcoming",
-      element: <UpcomingMovies />
+      path: "/browse/upcoming",
+      element: <UpcomingMovies />,
     },
     {
-      path:"/browse/popular",
-      element: <PopularMovies />
+      path: "/browse/popular",
+      element: <PopularMovies />,
     },
     {
-      path:"/browse/trendingMovies",
-      element: <TrendingMovies />
+      path: "/browse/trendingMovies",
+      element: <TrendingMovies />,
     },
     {
-      path:"/browse/trendingTVShows",
-      element: <TrendingTVShows />
+      path: "/browse/trendingTVShows",
+      element: <TrendingTVShows />,
     },
-    { 
+    {
       // Add a nested route for movie details
       path: "/movie/:id",
       element: <MovieDetails />,
@@ -54,9 +57,13 @@ const Body = () => {
   ]);
 
   return (
-    <div>    
+    <>
+    <div>
       <RouterProvider router={appRouter} />
     </div>
+    
+    {user && <Footer />}
+    </>
   );
 };
 

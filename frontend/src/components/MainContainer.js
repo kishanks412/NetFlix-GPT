@@ -7,11 +7,11 @@ const MainContainer = () => {
 
   if (!movies) return;
   
-  const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-  console.log(randomMovie)
+  // const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+  const randomMovie = movies[0];
 
+  
   const {original_title, overview, id} = randomMovie
-
   
 
   return (

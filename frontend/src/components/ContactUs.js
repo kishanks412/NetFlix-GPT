@@ -1,9 +1,10 @@
 
-import { firestore } from '../utils/firebase';
+import { db } from '../utils/firebase';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+import { collection, addDoc } from 'firebase/firestore';
 
 const MyTextInput = ({ label, ...props }) => {
  
@@ -46,9 +47,17 @@ const ContactUs = () => {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             // Store data in Firestore
-            const collectionRef = firestore.collection("User");
-           
-            await collectionRef.add(values);
+            // console.log(values)
+            
+            // const collectionRef = collection("User");
+            // console.log(collectionRef)
+
+
+            const docRef = await addDoc(collection(db, "User"), values);
+            // console.log("Document written  ", docRef.data);
+
+
+            // await collectionRef.add(values);
             // console.log('Data stored successfully!');
             // Handle success or navigate to another page
             // alert('Data stored successfully!');

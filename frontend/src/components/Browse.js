@@ -34,14 +34,14 @@ const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
   // fetch data from tmdb api and update the store through the custom hook
-  
+
   usePopularMovies();
   useUpcomingMovies();
   useTopRatedMovies();
   useTrendingMovies();
   useTrendingTVShows();
   useNowPlayingMovies();
-  
+
   return (
     <div>
       <Header />

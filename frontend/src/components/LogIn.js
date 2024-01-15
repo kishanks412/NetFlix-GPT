@@ -3,6 +3,7 @@ import Header from "./Header";
 import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   updateProfile,
@@ -25,14 +26,12 @@ const LogIn = () => {
 
   const handleButtonClick = () => {
     // if blank value
-    if(forgotPassword){
-      if (!email.current.value ) {
+    if (forgotPassword) {
+      if (!email.current.value) {
         setErrorMessage("Email is required.");
         return;
       }
-    }
-    else{
-
+    } else {
       if (!email.current.value || !password.current.value) {
         setErrorMessage("Email and password are required.");
         return;
@@ -57,7 +56,9 @@ const LogIn = () => {
       sendPasswordResetEmail(auth, email.current.value)
         .then(() => {
           // Password reset email sent
-          setErrorMessage("Password reset email sent. Check your inbox.");
+          setErrorMessage(
+            "Password reset email sent to your registered email. Check your inbox."
+          );
         })
         .catch((error) => {
           // An error occurred
@@ -71,6 +72,27 @@ const LogIn = () => {
             setErrorMessage("Error sending password reset email.");
           }
         });
+
+      // fetchSignInMethodsForEmail(auth, email.current.value)
+      //   .then((signInMethods) => {
+      //     if (signInMethods.length === 0) {
+      //       // No account found with this email address
+      //       setErrorMessage("No account found with this email address.");
+      //     } else {
+      //       // Send password reset email
+      //       return sendPasswordResetEmail(auth, email.current.value);
+      //     }
+      //   })
+      //   .then(() => {
+      //     // Password reset email sent
+      //     setErrorMessage("Password reset email sent. Check your inbox.");
+      //   })
+      //   .catch((error) => {
+      //     // An error occurred while checking the email or sending the reset email
+      //     const errorCode = error.code;
+      //     const errorMessage = error.message;
+      //     setErrorMessage("Error: " + errorCode + " - " + errorMessage);
+      //   });
     } else if (!isSignInForm) {
       // sign up logic
 
@@ -153,6 +175,7 @@ const LogIn = () => {
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+    setErrorMessage("");
   };
 
   return (
@@ -214,7 +237,10 @@ const LogIn = () => {
           <p className="py-2 text-sm md:text-base">
             <span
               className="cursor-pointer"
-              onClick={() => setForgotPassword(false)}
+              onClick={() => {
+                setForgotPassword(false);
+                setErrorMessage("");
+              }}
             >
               Go Back
             </span>
@@ -231,7 +257,10 @@ const LogIn = () => {
                 </span>
                 <p
                   className="cursor-pointer"
-                  onClick={() => setForgotPassword(true)}
+                  onClick={() => {
+                    setForgotPassword(true);
+                    setErrorMessage("");
+                  }}
                 >
                   {" "}
                   Forgot Password?

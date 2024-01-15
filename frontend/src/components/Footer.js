@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className=" flex flex-col items-center bg-red-700">
+    <div className=" flex flex-col items-center  "style={{backgroundColor:'#CFFFE5'}}>
       {/* <ContactUs /> */}
 
       <h1 className="text-xl py-2 md:text-2xl font-semibold md:font-bold">
@@ -12,7 +12,16 @@ const Footer = () => {
       </h1>
 
       <hr className="w-[90%]  p-0  md:border-2 border-gray-900" />
-      <div className="flex flex-col py-1 md:px-5 items-center md:flex-row justify-between w-full">
+      <div className="flex flex-col py-3 md:px-5 items-center md:flex-row justify-between w-full">
+        
+        <div className="">
+          <p className="">
+            ©️ 2023 <span className="text-lg font-semibold">movvify.</span>{" "}
+            Movie Recommendation App,India. <br className="  md:hidden" />  All
+            Rights Reserved
+          </p>
+          <p> PRIVACY POLICY TERMS AND CONDITIONS </p>
+        </div>
         <div>
           <h1 className="text-xl ml-[15%] md:ml-[25%] md:font-semibold">
             Contact Me
@@ -47,14 +56,6 @@ const Footer = () => {
               <Mail className="w-4 h-4 md:w-6 md:h-6" strokeWidth={1.75} />
             </a>
           </div>
-        </div>
-        <div className="">
-          <p className="">
-            ©️ 2023 <span className="text-lg font-semibold">movvify.</span>{" "}
-            Movie Recommendation App,India. <br className="  md:hidden" />  All
-            Rights Reserved
-          </p>
-          <p> PRIVACY POLICY TERMS AND CONDITIONS </p>
         </div>
       </div>
     </div>

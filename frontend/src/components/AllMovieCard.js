@@ -3,7 +3,6 @@ import React from "react";
 import { MoveLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MoviesCard from "./MoviesCard";
-import Header2 from "./Header2";
 
 const AllMovieCard = ({ movies, title }) => {
   const navigate = useNavigate();
@@ -14,10 +13,6 @@ const AllMovieCard = ({ movies, title }) => {
   if (!movies) return null;
   return (
     <div className="-mt-10">
-
-
-
-
       <div className="flex flex-row justify-between">
         <div
           className=" px-9 z-50 right-28 left-0 top-3 md:right-48 md:left-16 md:top-5 lg:left-8 lg:top-2 "
@@ -43,10 +38,7 @@ const AllMovieCard = ({ movies, title }) => {
           {title}
         </h1>
       </div>
-      
-      
-      
-      
+
       <div className="flex flex-wrap w-auto gap-x-6 gap-y-8 justify-start items-center bg-black px-10 py-2   md:pl-16 lg:px-8 ">
         {movies.map((movie) => (
           <MoviesCard key={movie.id} movie={movie} size={true} />
