@@ -17,7 +17,7 @@ const MainContainer = () => {
   if (!randomMovies) return;
   
 
-  console.log("randomMovies", randomMovies);
+  // console.log("randomMovies", randomMovies);
 
 
 
