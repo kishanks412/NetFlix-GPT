@@ -33,9 +33,9 @@ const GptSearchBar = () => {
     // make api call to gpt api and get movie results
 
     const gptQuery =
-      "Act as a movie recommendation system and suggest some movies for the query: " +
+      "Act as a movie, web, tv series recommendation system and suggest some movies for the query: " +
       searchText.current.value +
-      ". Only give me name of 5 movies, comma-separated like the example result given. Example Result: Koi, Sultan, Dhoom, Golmaal, Singham Returns";
+      ". Only give me name of 5 movies,web, tv series, comma-separated like the example result given. Example Result: Koi, Sultan, Dhoom, Golmaal, Singham Returns";
 
     const gptResults = await openai.chat.completions.create({
       messages: [{ role: "user", content: gptQuery }],
